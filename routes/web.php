@@ -51,3 +51,8 @@ Route::get('sitedeveloper',[Controller::class, 'sitedeveloper'])->name('sitedeve
 Route::get('download',[Controller::class, 'download'])->name('download');
 
 
+Route::get('fetchLogs/{ipAddress}/{username}/{macAdress}', [Controller::class, 'fetchLogs'])->name('fetchLogs');
+
+
+Route::post('/add-user', [Controller::class, 'addUser']);
+Route::get('catchapp.ai.co.zw', [Controller::class, 'catchappp']);

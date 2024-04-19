@@ -20,7 +20,7 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6">
+          <div class="col-lg-4 col-md-6">
             <div class="footer-info">
               <h3>Africom</h3>
               <p>
@@ -32,7 +32,7 @@
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
+          <div class="col-lg-4 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
               <li><i class="bi bi-chevron-right"></i> <a href="#home">Home</a></li>
@@ -44,7 +44,7 @@
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
+          <div class="col-lg-4 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
               <li><i class="bi bi-chevron-right"></i> <a href="serviceVoice">Voice</a></li>
@@ -56,12 +56,7 @@
             </ul>
           </div>
 
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>To get the latest news from Africom Team, register your email below</p>
-            <livewire:newsletters>
-
-          </div>
+          
 
         </div>
       </div>
@@ -73,7 +68,7 @@
 
         <div class="d-flex flex-column align-items-center align-items-lg-start">
           <div class="copyright">
-            &copy; Copyright 2023. All rights reserved  <strong>Africom</strong>.  All Rights Reserved
+            &copy; Copyright 2024. All rights reserved  <strong>Africom</strong>.  All Rights Reserved
           </div>
           <div class="credits">
             <!-- All the links in the footer should remain intact. -->

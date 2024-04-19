@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Mail\sendMail;
+use App\Mail\sendmail;
 use Illuminate\Support\Facades\Mail;
 
 class Contact extends Component
@@ -12,6 +12,7 @@ class Contact extends Component
     public $email;
     public $subject;
     public $message;
+    public $allemail=['munyaradzichirove@gmail.com','contactcenter@afri-com.net'];
     public function render()
     {
         return view('livewire.contact');
@@ -40,8 +41,8 @@ class Contact extends Component
     ];
 
     // try{
-
-        Mail::to('munyaradzichirove@gmail.com')
+        $allemail=['munyaradzichirove@gmail.com','contactcenter@afri-com.net'];        
+        Mail::to($allemail)
         ->send(new sendMail($data));
         Session()->flash("sucess","The email has been sent.Thank You");
         $this->name="";

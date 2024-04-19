@@ -59,7 +59,7 @@
           <ol>
             <li><a href="/">Home</a></li>
             <li>CatchApp</li>
-             <li> <a href="https:catchapp.ai.co.zw" class="btn btn-success">CatchApp</a> </li>
+          <!--  <li> <a href="https:catchapp.ai.co.zw" class="btn btn-success">CatchApp</a> </li> -->
           </ol>
         </div>
 
@@ -151,7 +151,7 @@
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <h3>Munyaradzi Chirove</h3>
+                <h3>Tinashe Phiri</h3>
                 <h4>CatchApp User</h4>
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
@@ -163,7 +163,7 @@
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <h3>Munyaradzi Chirove</h3>
+                <h3>Reney Chigumo</h3>
                 <h4>CatchApp User</h4>
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
