@@ -173,25 +173,48 @@ class Controller extends BaseController
             return response()->json(null, 404);
         }
     }
-    
     public function update(Request $request, $username)
-    {
-        $request->validate([
-            'attribute' => 'required',
-            'op' => 'required',
-            'value' => 'required',
-        ]);
-    
-        $radcheck = Radcheck::where('username', $username)->first();
-        if ($radcheck){
-            $radcheck = Radcheck::where('username', $username)->firstOrFail();
-            $radcheck->update($request->all());
-            return response()->json($radcheck, 200);
-        }  
-        else{
-            return response()->json(['message' => 'Radcheck not found']);
-        }
+{
+    /**
+     * Validate the incoming request
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    $request->validate([
+        'attribute' => 'required',
+        'op' => 'required',
+        'value' => 'required',
+    ]);
+
+    /**
+     * Retrieve the Radcheck instance associated with the given username
+     * 
+     * @param  string  $username
+     * @return \Illuminate\Database\Eloquent\Model|Radcheck
+     */
+    $radcheck = Radcheck::where('username', $username)->first();
+
+    if ($radcheck) {
+        /**
+         * Update the existing Radcheck instance
+         */
+        $radcheck->username = $request->input('username');;
+        $radcheck->attribute = 'Cleartext-Password';
+        $radcheck->op = ':=';
+        $radcheck->value = $request->input('value'); // assuming 'value' is the key in the request
+        $radcheck->save();
+        return response()->json($radcheck, 200);
+    } else {
+        /**
+         * Return a JSON response indicating that the Radcheck was not found
+         * 
+         * @return \Illuminate\Http\JsonResponse
+         */
+        return response()->json(['message' => 'Radcheck not found']);
     }
+}
+   
 
     public function destroy($username)
     {
