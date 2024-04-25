@@ -34,6 +34,7 @@ class sendMail extends Mailable
     {
         return $this->from("chirovemunyaradzi@gmail.com",'Africom Customer Email')
                     ->subject($this->data['subject'])
-                    ->view('emails.index')->with('data',$this->data);
+                    ->view('emails.index')->with('data',$this->data)
+                    ->replyTo($this->data['email']);
     }
 }

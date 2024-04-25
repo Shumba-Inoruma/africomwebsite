@@ -41,7 +41,7 @@ class Contact extends Component
     ];
 
     // try{
-        $allemail=['munyaradzichirove@gmail.com','contactcenter@afri-com.net'];        
+        $allemail=['munyaradzichirove@gmail.com'];        
         Mail::to($allemail)
         ->send(new sendMail($data));
         Session()->flash("sucess","The email has been sent.Thank You");
