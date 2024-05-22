@@ -7,6 +7,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Http;
 use App\Models\Radcheck;
+use App\Models\UserInfo;
 use Illuminate\Http\Request;
 
 class Controller extends BaseController
@@ -137,6 +138,7 @@ class Controller extends BaseController
         $attribute = $request->input('attribute');
         $op = $request->input('op');
         $value = $request->input('value');
+        $whatsapp = $request->input('whatsapp');
 
         // Validate inputs if needed
         $existingUser = Radcheck::where('username', $username)->first();
@@ -151,17 +153,51 @@ class Controller extends BaseController
         $radcheck->op = ':=';
         $radcheck->value = $value;
         $radcheck->save();
-
+        try {
+            // Create a new user info record
+            $userInfo = new UserInfo();
+            $userInfo->username = $username;
+            $userInfo->whatsapp = $whatsapp;
+            $userInfo->save();
+    
+            // Return success response
+            return response()->json(['message' => 'Radcheck added successfully'], 201);
+        } catch (\Exception $e) {
+            // Catch any exceptions and return an error response
+            return response()->json(['error' => 'An error occurred while saving user info: ' . $e->getMessage()], 500);
+        }
         // Return success response
         return response()->json(['message' => 'Radcheck added successfully'], 201);
     }
 
     public function index()
     {
+        // Fetch all Radcheck records
         $radchecks = Radcheck::all();
-        return response()->json($radchecks);
-    }
 
+        // Fetch all UserInfo records
+        $userInfos = UserInfo::all();
+
+        // Create a map of userInfos with username as key for quick lookup
+        $userInfoMap = $userInfos->keyBy('username');
+
+        // Combine data from both tables
+        $combinedData = $radchecks->map(function ($radcheck) use ($userInfoMap) {
+            if (isset($userInfoMap[$radcheck->username])) {
+                return [
+                    'id' => $radcheck->id,
+                    'username' => $radcheck->username,
+                    'attribute' => $radcheck->attribute,
+                    'op' => $radcheck->op,
+                    'value' => $radcheck->value,
+                    'whatsapp' => $userInfoMap[$radcheck->username]->whatsapp,
+                ];
+            }
+            return null;
+        })->filter(); // Remove null values
+
+        return response()->json($combinedData);
+    }
 
     public function show($username)
     {
@@ -175,35 +211,41 @@ class Controller extends BaseController
     }
     public function update(Request $request, $username)
 {
-    /**
-     * Validate the incoming request
-     * 
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    $request->validate([
-        'attribute' => 'required',
-        'op' => 'required',
-        'value' => 'required',
-    ]);
-
-    /**
-     * Retrieve the Radcheck instance associated with the given username
-     * 
-     * @param  string  $username
-     * @return \Illuminate\Database\Eloquent\Model|Radcheck
-     */
+    
     $radcheck = Radcheck::where('username', $username)->first();
 
     if ($radcheck) {
         /**
          * Update the existing Radcheck instance
          */
-        $radcheck->username = $request->input('username');;
+        $radcheck->username = $username;
         $radcheck->attribute = 'Cleartext-Password';
         $radcheck->op = ':=';
         $radcheck->value = $request->input('value'); // assuming 'value' is the key in the request
         $radcheck->save();
+
+        try {
+            // Find the UserInfo object by username
+            $userInfo = UserInfo::where('username', $username)->first();
+
+            if (!$userInfo) {
+                return response()->json(['error' => 'UserInfo not found'], 404);
+            }
+
+            // Update the UserInfo fields with the new data from the request
+            $userInfo->whatsapp = $request->input('whatsapp', $userInfo->whatsapp);
+            // Add other fields here as needed
+            // $userInfo->another_field = $request->input('another_field', $userInfo->another_field);
+
+            // Save the updated UserInfo object
+            $userInfo->save();
+
+            return response()->json(['message' => 'UserInfo updated successfully'], 200);
+        } catch (\Exception $e) {
+            // Return an error response if an exception occurs
+            return response()->json(['error' => 'An error occurred while updating UserInfo: ' . $e->getMessage()], 500);
+        }
+        
         return response()->json($radcheck, 200);
     } else {
         /**
@@ -223,6 +265,17 @@ class Controller extends BaseController
         if ($radcheck){
             $radcheck = Radcheck::where('username', $username)->firstOrFail();
             $radcheck->delete();
+            try {
+                // Retrieve the UserInfo object(s) with the given username
+                $userinfos = UserInfo::where('username', $username)->get();
+                // Delete the UserInfo object(s)
+                $userinfos->each->delete();
+                return response()->json(['message' => "Userinfo(s) with username '$username' deleted successfully."]);
+            } catch (\Exception $e) {
+                // Return an error response if an exception occurs
+                return response()->json(['error' => 'An error occurred while deleting userinfo(s).'], 500);
+            }
+
             return response()->json($radcheck, 200);
         }  
         else{
