@@ -201,14 +201,25 @@ class Controller extends BaseController
 
     public function show($username)
     {
+        // Find the Radcheck record by username
         $radcheck = Radcheck::where('username', $username)->first();
         
-        if($radcheck) {
-            return response()->json($radcheck);
+        if ($radcheck) {
+            // Find the Userinfo record by username
+            $userinfo = Userinfo::where('username', $username)->first();
+            
+            // Create the response object
+            $response = [
+                'radcheck' => $radcheck,
+                'whatsapp' => $userinfo ? $userinfo->whatsapp : null
+            ];
+            
+            return response()->json($response);
         } else {
             return response()->json(null, 404);
         }
     }
+    
     public function update(Request $request, $username)
 {
     
