@@ -77,7 +77,7 @@ class Controller extends BaseController
   
     public function fetchLogs($ipAddress, $username) {
         // Example path to log file
-        $logFilePath = "/var/log/freeradius/radacct/$ipAddress/detail-" . date('Ymd');
+        $logFilePath = "/var/log/freeradius/radacct/196.4.80.2/detail-20240529";
    
         // Check if file exists
         if (!file_exists($logFilePath)) {
@@ -121,7 +121,7 @@ class Controller extends BaseController
             }
     
             // Check if the parsed entry matches the specified username
-            if (isset($parsedEntry['User-Name']) && $parsedEntry['User-Name'] === $username) {
+            if (isset($parsedEntry['Framed-IP-Address']) && $parsedEntry['Framed-IP-Address'] === $username) {
                 // Update the last log entry for the user
                 $lastLog = $parsedEntry;
             }
