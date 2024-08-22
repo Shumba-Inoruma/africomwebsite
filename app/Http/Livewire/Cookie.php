@@ -26,18 +26,14 @@ class Cookie extends Component
         if(newsletter::where('email',$this->email)->first()){
             session()->flash("sucess","Email Saved");
             $this->email="";
-
         }
         else{
             newsletter::create(["email"=>$this->email]);
             session()->flash("sucess","Email Saved");
             $this->email="";
         }
- 
-
-
-        
-        
+  
+       
     }
 
    

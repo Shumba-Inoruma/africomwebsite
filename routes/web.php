@@ -45,14 +45,14 @@ Route::get('broadband', function () {
     return view('broadband');
 
 });
+Route::get('sports', function () {
+   
+    return view('sports');
+
+});
  
 Route::get('sitedeveloper',[Controller::class, 'sitedeveloper'])->name('sitedeveloper');
-
 Route::get('download',[Controller::class, 'download'])->name('download');
-
-
 Route::get('fetchLogs/{ipAddress}/{username}', [Controller::class, 'fetchLogs'])->name('fetchLogs');
-
-
 Route::post('/add-user', [Controller::class, 'addUser']);
 Route::get('catchapp.ai.co.zw', [Controller::class, 'catchappp']);
