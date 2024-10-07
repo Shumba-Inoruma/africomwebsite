@@ -181,7 +181,59 @@
       </div>
     </section><!-- End Testimonials Section -->
     <br><br>
-     
+     <!-- ======= Contact Section ======= -->
+     <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-header">
+          <h2 style="color: green;">Register with Us</h2>
+          <p>If you have any queries, please complete the form below and a member of our team will respond within 24 hours.</p>
+        </div>
+
+      </div>
+      <div class="container">
+
+        <div class="row gy-5 gx-lg-5">
+
+          <div class="col-lg-4">
+
+            <div class="info">
+              <h3 style="color: green;">Get in touch</h3>
+
+              <div class="info-item d-flex">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h4 style="color: green;">Location:</h4>
+                  <p>1st Floor SSC Building,Cnr JNyerere & Sam Mujoma, NSSA Building,Harare</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h4 style="color: green;">Email:</h4>
+                  <p>customerquiries@afri-com.net</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex">
+                <i class="bi bi-phone flex-shrink-0"></i>
+                <div>
+                  <h4 style="color: green;">Call:</h4>
+                  <p>CALL 08644 000096</p>
+                </div>
+              </div><!-- End Info Item -->
+            </div>
+          </div>
+          <div class="col-lg-8">
+          <livewire:contact>
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+      
     <!-- ======= CTA Section ======= -->
     <section class="section cta-section" style="background-color: green">
       <div class="container">

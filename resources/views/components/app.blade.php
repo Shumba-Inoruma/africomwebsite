@@ -26,70 +26,12 @@
   
   <link href="assets/css/variables.css" rel="stylesheet">
  
- 
-
- 
   <link href="assets/css/main.css" rel="stylesheet">
  
 </head>
 
 <body>
     @livewireStyles
-  
-   <section id="hero">
-    <div class="hero-container">
-      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
-
-        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
-
-        <div class="carousel-inner" role="listbox">
-
-          <!-- Slide 1 -->
-          <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg);">
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown"  style="color: green;">Welcome to <span>Africom</span></h2>
-                <p class="animate__animated animate__fadeInUp"  style="color: green;">A leading converged communication service provider. The first company in Zimbabwe to challenge all convention by offering converged communication solutions.</p>
-                <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="border: green 2px solid;">Get Started</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 2 -->
-          <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.png);">
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown" style="color: green;">Go Green With Africom Fast Internet</h2>
-                <p class="animate__animated animate__fadeInUp"  style="color: green;">We take pride in the market for being known as the partner for affordable voice solutions. </p>
-                <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"  style="border: green 2px solid;">Get Started</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 3 -->
-          <div class="carousel-item" style="background-image: url(assets/img/1.png);">
-            <div class="carousel-container">
-              <div class="carousel-content">
-                 <h2 class="animate__animated animate__fadeInDown" style="color:green">Bringing You <span>Catch</span> <span style="color: rgb(161, 43, 43);">App</span>!</h2>
-                <p class="animate__animated animate__fadeInUp" style="color: green;">Call Anyone in Zimbabwe Using Maswerasei Application at very low prices. Try it now!</p>
-                <a href="/serviceCatchApp" class="btn-get-started animate__animated animate__fadeInUp scrollto"  style="border: green 2px solid;">Learn More</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon bi bi-chevron-double-left" aria-hidden="true"></span>
-        </a>
-
-        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-          <span class="carousel-control-next-icon bi bi-chevron-double-right" aria-hidden="true"></span>
-        </a>
-
-      </div>
-    </div>
-  </section><!-- End Hero -->
 
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex align-items-center">
@@ -137,11 +79,6 @@
 
     </div>
   </header><!-- End Header -->
-
-
- 
-       
- 
 
   <main id="main">
     <!-- ======= About Section ======= -->
@@ -268,7 +205,7 @@
                   <i class="bi bi-activity"></i>
                 </div>
                 <a href="/serviceVoice" class="stretched-link">
-                  <h3>Voice</h3>
+                  <h3>Maswerasei</h3>
                 </a>
                 <p>We take pride in the market for being known as the partner for affordable voice solutions.</p>
               </div>
@@ -285,7 +222,7 @@
                   <i class="bi bi-broadcast"></i>
                 </div>
                 <a href="/serviceGuroo" class="stretched-link">
-                  <h3>Guroo</h3>
+                  <h3>VOIP and Call Centre Solution</h3>
                 </a>
                 <p>Calls to Zim using Guroo are even cheaper than calling to Zim from within Zimbabwe itself.</p>
               </div>
@@ -302,7 +239,7 @@
                   <i class="bi bi-easel"></i>
                 </div>
                 <a href="serviceHealthy" class="stretched-link">
-                  <h3>Africom Health</h3>
+                  <h3>Networking: FIbre, LAN</h3>
                 </a>
                 <p>Digital health solutions for a digital age that uses telemedicine to provide access to health services.
                   </p>
@@ -320,7 +257,7 @@
                   <i class="bi bi-easel"></i>
                 </div>
                 <a href="/serviceIctConsultancy" class="stretched-link">
-                  <h3>ICT Consultancy</h3>
+                  <h3>Data Centre, Cyber Security and Hosted Services</h3>
                 </a>
                 <p>Digital health solutions for a digital age that uses telemedicine to provide access to health services.
                   </p>
@@ -340,7 +277,7 @@
                     <i class="bi bi-calendar4-week"></i>
                 </div>
                 <a href="/serviceCommunication">
-                  <h3>Communication solutions</h3>
+                  <h3>Broadband Plus</h3>
                 </a>
                 <p>
                     Voice over IP is a methodology and group of technologies for the delivery of voice communications.</p>
