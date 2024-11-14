@@ -51,6 +51,11 @@ Route::get('sports', function () {
 
 });
  
+Route::get('lead', function () {
+   
+    return view('lead');
+
+});
 Route::get('sitedeveloper',[Controller::class, 'sitedeveloper'])->name('sitedeveloper');
 Route::get('download',[Controller::class, 'download'])->name('download');
 Route::get('fetchLogs/{ipAddress}/{username}', [Controller::class, 'fetchLogs'])->name('fetchLogs');
