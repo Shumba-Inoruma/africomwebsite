@@ -96,9 +96,18 @@ class Contact extends Component
             'message' => $this->message,
         ];
 
-        // Send data to Frappe API
-        $response = Http::post('https://erp.ai.co.zw/api/method/africom_cdma.www.number.create_lead', [
-            'data' => json_encode($data),
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Cookie' => 'full_name=Guest; sid=Guest; system_user=no; user_id=Guest; user_image='
+        ])->post('https://erp.ai.co.zw/api/method/africom_cdma.www.number.create_lead', [
+            'first_name' => $data['name'],
+            'surname' => $data['surname'],
+            'phone' => $data['phone'],
+            'gender' => $data['gender'],
+            'product' => $data['product'],
+            'email' => $data['email'],
+            'location' => $data['location'],
+            'message' => $data['message']
         ]);
 
         // Send the email
