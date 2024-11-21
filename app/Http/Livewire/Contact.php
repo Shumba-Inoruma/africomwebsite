@@ -17,8 +17,7 @@ class Contact extends Component
     public $product;
     public $location;
     public $message;
-    public $allemail = ['munyaradzichirove@gmail.com'];
-    // ,"customerquiries@afri-com.net"]
+    public $allemail = ['munyaradzichirove@gmail.com','customerquiries@afri-com.net'];
     public function render()
     {
         return view('livewire.contact');
