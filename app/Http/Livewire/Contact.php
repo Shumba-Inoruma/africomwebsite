@@ -17,8 +17,8 @@ class Contact extends Component
     public $product;
     public $location;
     public $message;
-    public $allemail = ['munyaradzichirove@gmail.com',"customerquiries@afri-com.net"];
-
+    public $allemail = ['munyaradzichirove@gmail.com'];
+    // ,"customerquiries@afri-com.net"]
     public function render()
     {
         return view('livewire.contact');
@@ -27,8 +27,8 @@ class Contact extends Component
     protected $rules = [
         'name' => 'required|min:5',
         'surname' => 'required|min:5',
-        'email' => 'required|email',
-        'phone' => 'required|min:10',
+        'email' => 'required|email|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,})$/',
+        'phone' => 'required|regex:/^\+?[0-9]{10,15}$/',
         'gender' => 'required',
         'product' => 'required',
         'location' => 'required|min:5',
@@ -84,7 +84,7 @@ class Contact extends Component
                 $this->gender = 'Unknown';  // Default if no valid gender is selected
                 break;
         }
-
+        
         $data = [
             'name' => $this->name,
             'surname' => $this->surname,
@@ -98,17 +98,15 @@ class Contact extends Component
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            'Cookie' => 'full_name=Guest; sid=Guest; system_user=no; user_id=Guest; user_image='
-        ])->post('https://erp.ai.co.zw/api/method/africom_cdma.www.number.create_lead', [
+        ])->post('https://erp.ai.co.zw/api/method/africom_cdma.www.number.create_leads', [
             'first_name' => $data['name'],
-            'surname' => $data['surname'],
+            'last_name' => $data['surname'],
             'phone' => $data['phone'],
             'gender' => $data['gender'],
-            'product' => $data['product'],
-            'email' => $data['email'],
-            'location' => $data['location'],
-            'message' => $data['message']
+            'email_id' => $data['email'],
+            'location' => $data['location']
         ]);
+        // Debugging: log response
 
         // Send the email
         Mail::to($this->allemail)
