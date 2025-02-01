@@ -26,3 +26,5 @@ Route::get('/radcheck/all', [Controller::class, 'index']);
 Route::get('/radcheck/get/{username}', [Controller::class, 'show']);
 Route::put('/radcheck/update/{username}', [Controller::class, 'update']);
 Route::delete('/radcheck/delete/{username}', [Controller::class, 'destroy']);
+Route::post('/saveMail', [Controller::class, 'submitFormNow']);
+Route::get('/downloadMail', [Controller::class, 'downloadFile']);

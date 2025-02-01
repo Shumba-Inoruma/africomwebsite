@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Radcheck;
 use App\Models\UserInfo;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class Controller extends BaseController
 {
@@ -130,6 +132,48 @@ class Controller extends BaseController
         // Encode the last log entry to JSON format
         return json_encode(['lastLog' => $lastLog]);
     }
+    public function downloadFile()
+{
+    $filePath = storage_path('app/forms/faiwu.txt');
+
+    // Check if file exists
+    if (file_exists($filePath)) {
+        return response()->download($filePath);
+    }
+
+    // If file doesn't exist, return an error message
+    return response()->json([
+        'success' => false,
+        'message' => 'File not found!',
+    ], 404);
+}
+
+
+    public function submitFormNow(Request $request)
+    {
+        $data = [
+            'date' => now()->toDateTimeString(),
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'subject' => $request->input('subject'),
+            'message' => $request->input('message')
+        ];
+    
+        $filePath = storage_path('app/forms/faiwu.txt');
+    
+        // Format data to match desired output
+        $formattedData = "{$data['date']}\nName: {$data['name']}\nEmail: {$data['email']}\nSubject: {$data['subject']}\nMessage: {$data['message']}\n---------------------------------\n";
+    
+        // Prepend the data to the file
+        file_put_contents($filePath, $formattedData . file_get_contents($filePath));
+    
+        return response()->json([
+            'success' => true, // Add the success key
+            'message' => 'Form data saved successfully!',
+        ]);
+    }
+    
+
 
     public function addRadCheck(Request $request)
     {
@@ -198,6 +242,7 @@ class Controller extends BaseController
 
         return response()->json($combinedData);
     }
+    
 
     public function show($username)
     {
@@ -293,10 +338,12 @@ class Controller extends BaseController
             return response()->json(['message' => 'Radcheck not found']);
         }
     }
+    
 
 
 
     }
+    
 
    
     
